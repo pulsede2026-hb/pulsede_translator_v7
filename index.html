@@ -91,8 +91,12 @@ body{
 </div>
 
 <div class="rightinfo" id="languageStatus">
-🌍 <span class="lang-link" onclick="setGerman()">Deutsch ✓</span> |
-<span class="lang-link" onclick="setEnglish()">English</span>
+🌍
+<span class="lang-link" onclick="setLanguage('de')">DE ✓</span> |
+<span class="lang-link" onclick="setLanguage('en')">EN</span> |
+<span class="lang-link" onclick="setLanguage('nl')">NL</span> |
+<span class="lang-link" onclick="setLanguage('fr')">FR</span> |
+<span class="lang-link" onclick="setLanguage('es')">ES</span>
 </div>
 
 </div>
@@ -111,60 +115,65 @@ Willkommen bei PulseDE Erlebniswelt
 </div>
 
 <script>
+
+const translations = {
+de: "Willkommen bei PulseDE Erlebniswelt",
+en: "Welcome to PulseDE Experience World",
+nl: "Welkom bij PulseDE Belevingswereld",
+fr: "Bienvenue dans l'univers PulseDE",
+es: "Bienvenido al mundo de PulseDE"
+};
+
 function updateLanguageDisplay(lang){
 
-const status = document.getElementById("languageStatus");
+const langs = ["de","en","nl","fr","es"];
+const labels = {
+de:"DE",
+en:"EN",
+nl:"NL",
+fr:"FR",
+es:"ES"
+};
 
-if(lang === "en"){
-    status.innerHTML =
-    '🌍 <span class="lang-link" onclick="setGerman()">Deutsch</span> | <span class="lang-link" onclick="setEnglish()">English ✓</span>';
-}else{
-    status.innerHTML =
-    '🌍 <span class="lang-link" onclick="setGerman()">Deutsch ✓</span> | <span class="lang-link" onclick="setEnglish()">English</span>';
+let html = "🌍 ";
+
+langs.forEach((l,index)=>{
+
+html += `<span class="lang-link" onclick="setLanguage('${l}')">${labels[l]}${l===lang?' ✓':''}</span>`;
+
+if(index < langs.length-1){
+html += " | ";
 }
 
+});
+
+document.getElementById("languageStatus").innerHTML = html;
+
 }
 
-function setGerman(){
+function setLanguage(lang){
 
-localStorage.setItem("language","de");
+localStorage.setItem("language",lang);
 
 document.getElementById("text").innerHTML =
-"Willkommen bei PulseDE Erlebniswelt";
+translations[lang];
 
-updateLanguageDisplay("de");
-
-}
-
-function setEnglish(){
-
-localStorage.setItem("language","en");
-
-document.getElementById("text").innerHTML =
-"Welcome to PulseDE Experience World";
-
-updateLanguageDisplay("en");
+updateLanguageDisplay(lang);
 
 }
 
 window.onload = function(){
 
-const lang = localStorage.getItem("language");
+const lang =
+localStorage.getItem("language") || "de";
 
-if(lang === "en"){
-    document.getElementById("text").innerHTML =
-    "Welcome to PulseDE Experience World";
+document.getElementById("text").innerHTML =
+translations[lang];
 
-    updateLanguageDisplay("en");
-}else{
-    document.getElementById("text").innerHTML =
-    "Willkommen bei PulseDE Erlebniswelt";
-
-    updateLanguageDisplay("de");
-}
+updateLanguageDisplay(lang);
 
 }
+
 </script>
-
 </body>
 </html>
