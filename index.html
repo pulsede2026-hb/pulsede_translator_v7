@@ -114,6 +114,8 @@ Willkommen bei PulseDE Erlebniswelt
 
 function setGerman(){
 
+localStorage.setItem("language","de");
+
 document.getElementById("text").innerHTML =
 "Willkommen bei PulseDE Erlebniswelt";
 
@@ -121,8 +123,28 @@ document.getElementById("text").innerHTML =
 
 function setEnglish(){
 
+localStorage.setItem("language","en");
+
 document.getElementById("text").innerHTML =
 "Welcome to PulseDE Experience World";
+
+}
+
+window.onload = function(){
+
+const lang = localStorage.getItem("language");
+
+if(lang === "en"){
+
+document.getElementById("text").innerHTML =
+"Welcome to PulseDE Experience World";
+
+}else{
+
+document.getElementById("text").innerHTML =
+"Willkommen bei PulseDE Erlebniswelt";
+
+}
 
 }
 
