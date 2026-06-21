@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>PulseDE Translator Test</title>
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    text-align:center;
+    background:#111;
+    color:white;
+    padding:40px;
+}
+
+.lang-btn{
+    background:#d6a84f;
+    color:black;
+    border:none;
+    padding:10px 20px;
+    margin:5px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#text{
+    margin-top:30px;
+    font-size:24px;
+}
+</style>
+
+</head>
+<body>
+
+<h2>🌍 PulseDE Translator Test</h2>
+
+<button class="lang-btn" onclick="setGerman()">Deutsch</button>
+
+<button class="lang-btn" onclick="setEnglish()">English</button>
+
+<div id="text">
+
+Willkommen bei PulseDE Erlebniswelt
+
+</div>
+
+<script>
+
+function setGerman(){
+document.getElementById("text").innerHTML =
+"Willkommen bei PulseDE Erlebniswelt";
+}
+
+function setEnglish(){
+document.getElementById("text").innerHTML =
+"Welcome to PulseDE Experience World";
+}
+
+</script>
+
+</body>
+</html>
