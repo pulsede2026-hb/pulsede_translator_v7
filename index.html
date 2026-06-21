@@ -84,8 +84,8 @@ body{
 📱 Finger spreizen / zusammenziehen
 </div>
 
-<div class="rightinfo">
-🌍 Deutsch | English
+<div class="rightinfo" id="languageStatus">
+🌍 Deutsch ✓ | English
 </div>
 
 </div>
@@ -112,12 +112,33 @@ Willkommen bei PulseDE Erlebniswelt
 
 <script>
 
+function updateLanguageDisplay(lang){
+
+const status =
+document.getElementById("languageStatus");
+
+if(lang === "en"){
+
+status.innerHTML =
+"🌍 Deutsch | English ✓";
+
+}else{
+
+status.innerHTML =
+"🌍 Deutsch ✓ | English";
+
+}
+
+}
+
 function setGerman(){
 
 localStorage.setItem("language","de");
 
 document.getElementById("text").innerHTML =
 "Willkommen bei PulseDE Erlebniswelt";
+
+updateLanguageDisplay("de");
 
 }
 
@@ -128,27 +149,33 @@ localStorage.setItem("language","en");
 document.getElementById("text").innerHTML =
 "Welcome to PulseDE Experience World";
 
+updateLanguageDisplay("en");
+
 }
 
 window.onload = function(){
 
-const lang = localStorage.getItem("language");
+const lang =
+localStorage.getItem("language");
 
 if(lang === "en"){
 
 document.getElementById("text").innerHTML =
 "Welcome to PulseDE Experience World";
 
+updateLanguageDisplay("en");
+
 }else{
 
 document.getElementById("text").innerHTML =
 "Willkommen bei PulseDE Erlebniswelt";
+
+updateLanguageDisplay("de");
 
 }
 
 }
 
 </script>
-
 </body>
 </html>
