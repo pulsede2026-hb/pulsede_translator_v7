@@ -3,119 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseDE Translator V7</title>
 
 <style>
-html, body{
-    margin:0;
-    padding:0;
-    background:#090909;
-    font-family:Arial, sans-serif;
-    overflow:hidden;
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 18px;
-    background:#090909;
-    border-bottom:2px solid #d6a84f;
-    color:white;
-    font-size:14px;
-    box-sizing:border-box;
-    gap:10px;
-    flex-wrap:wrap;
-}
+  .translator-box {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.leftinfo{
-    color:#ddd;
-}
+  .language-bar {
+    background: #000;
+    border: 2px solid #d4af37;
+    border-radius: 18px;
+    padding: 14px 18px;
+    color: #d4af37;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.8;
+    max-width: 95%;
+  }
 
-.rightinfo{
-    color:#ffd76a;
-    font-weight:bold;
-}
+  .language-bar a {
+    color: #d4af37;
+    text-decoration: none;
+    margin: 0 6px;
+  }
 
-.lang-link{
-    cursor:pointer;
-    color:#ffd76a;
-    text-decoration:none;
-}
+  .language-bar a:hover {
+    text-decoration: underline;
+  }
 
-.lang-link:hover{
-    text-decoration:underline;
-}
+  .globe {
+    margin-right: 6px;
+  }
 
-@media(max-width:700px){
-    .topbar{
-        justify-content:center;
-        text-align:center;
-        font-size:13px;
-        padding:8px 10px;
+  @media (max-width: 600px) {
+    .translator-box {
+      min-height: 200px;
     }
-}
+
+    .language-bar {
+      font-size: 16px;
+      padding: 12px 14px;
+      line-height: 1.9;
+    }
+  }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
-
-<div class="leftinfo">
-💻 Strg + / - / 0 &nbsp;&nbsp; 📱 Finger spreizen
+<div class="translator-box">
+  <div class="language-bar">
+    <span class="globe">🌍</span>
+    <a href="DEINE-DE-SEITE" target="_top">DE</a> |
+    <a href="DEINE-EN-SEITE" target="_top">EN</a> |
+    <a href="DEINE-NL-SEITE" target="_top">NL</a> |
+    <a href="DEINE-FR-SEITE" target="_top">FR</a> |
+    <a href="DEINE-ES-SEITE" target="_top">ES</a>
+  </div>
 </div>
-
-<div class="rightinfo" id="languageStatus">
-🌍 DE ✓ | EN | NL | FR | ES
-</div>
-
-</div>
-
-<script>
-const langs = ["de","en","nl","fr","es"];
-
-const labels = {
-de:"DE",
-en:"EN",
-nl:"NL",
-fr:"FR",
-es:"ES"
-};
-
-function updateLanguageDisplay(lang){
-
-let html = "🌍 ";
-
-langs.forEach((l,index)=>{
-
-html += `<span class="lang-link" onclick="setLanguage('${l}')">${labels[l]}${l===lang?' ✓':''}</span>`;
-
-if(index < langs.length-1){
-html += " | ";
-}
-
-});
-
-document.getElementById("languageStatus").innerHTML = html;
-
-}
-
-function setLanguage(lang){
-
-localStorage.setItem("language",lang);
-
-updateLanguageDisplay(lang);
-
-}
-
-window.onload = function(){
-
-const lang = localStorage.getItem("language") || "de";
-
-updateLanguageDisplay(lang);
-
-}
-</script>
 
 </body>
 </html>
