@@ -3,88 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PulseDE Translator V7a</title>
+<title>PulseDE Translator V7b</title>
 
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
 
+.translator-box {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+.language-bar {
+  background: #000;
+  border: 2px solid #d4af37;
+  border-radius: 18px;
+  padding: 14px 18px;
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.8;
+  max-width: 95%;
+}
+
+.language-bar a {
+  color: #d4af37;
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+.language-bar a:hover {
+  text-decoration: underline;
+}
+
+.language-bar a.active {
+  color: #ffffff;
+  text-shadow: 0 0 8px #d4af37;
+}
+
+.globe {
+  margin-right: 6px;
+}
+
+@media (max-width: 600px) {
   .translator-box {
-    width: 100%;
     min-height: 200px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 10px;
-    box-sizing: border-box;
   }
 
   .language-bar {
-    background: #000;
-    border: 2px solid #d4af37;
-    border-radius: 18px;
-    padding: 14px 18px;
-    color: #d4af37;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    white-space: normal;
-    line-height: 1.8;
-    max-width: 95%;
+    font-size: 16px;
+    padding: 12px 14px;
+    line-height: 1.9;
   }
-
-  .language-bar a {
-    color: #d4af37;
-    text-decoration: none;
-    margin: 0 6px;
-  }
-
-  .language-bar a:hover {
-    text-decoration: underline;
-  }
-
-  .active-lang {
-    color: #ffffff;
-    text-shadow: 0 0 8px #d4af37;
-  }
-
-  .globe {
-    margin-right: 6px;
-  }
-
-  @media (max-width: 600px) {
-    .translator-box {
-      min-height: 200px;
-    }
-
-    .language-bar {
-      font-size: 16px;
-      padding: 12px 14px;
-      line-height: 1.9;
-    }
-  }
+}
 </style>
 </head>
 
 <body>
 
 <div class="translator-box">
-  <div class="language-bar">
-    <span class="globe">🌍</span>
-
-    <a href="DEINE-DE-SEITE" target="_top" class="active-lang">DE ✓</a> |
-    <a href="DEINE-EN-SEITE" target="_top">EN</a> |
-    <a href="DEINE-NL-SEITE" target="_top">NL</a> |
-    <a href="DEINE-FR-SEITE" target="_top">FR</a> |
-    <a href="DEINE-ES-SEITE" target="_top">ES</a>
-
-  </div>
+  <div class="language-bar" id="languageBar"></div>
 </div>
+
+<script>
+const activeLanguage = "de";
+
+const languageLinks = {
+  de: "#",
+  en: "#",
+  nl: "#",
+  fr: "#",
+  es: "#"
+};
+
+const languageLabels = {
+  de: "DE",
+  en: "EN",
+  nl: "NL",
+  fr: "FR",
+  es: "ES"
+};
+
+function buildLanguageBar() {
+  const order = ["de", "en", "nl", "fr", "es"];
+  let html = '<span class="globe">🌍</span>';
+
+  order.forEach((lang, index) => {
+    const isActive = lang === activeLanguage;
+    html += `<a href="${languageLinks[lang]}" target="_top" class="${isActive ? "active" : ""}">${languageLabels[lang]}${isActive ? " ✓" : ""}</a>`;
+
+    if (index < order.length - 1) {
+      html += " | ";
+    }
+  });
+
+  document.getElementById("languageBar").innerHTML = html;
+}
+
+buildLanguageBar();
+</script>
 
 </body>
 </html>
