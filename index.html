@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PulseDE Translator V7</title>
+<title>PulseDE Translator V7a</title>
 
 <style>
   html, body {
@@ -22,7 +22,7 @@
     justify-content: center;
     padding-top: 10px;
     box-sizing: border-box;
-}
+  }
 
   .language-bar {
     background: #000;
@@ -48,6 +48,11 @@
     text-decoration: underline;
   }
 
+  .active-lang {
+    color: #ffffff;
+    text-shadow: 0 0 8px #d4af37;
+  }
+
   .globe {
     margin-right: 6px;
   }
@@ -71,11 +76,13 @@
 <div class="translator-box">
   <div class="language-bar">
     <span class="globe">🌍</span>
-    <a href="DEINE-DE-SEITE" target="_top">DE</a> |
+
+    <a href="DEINE-DE-SEITE" target="_top" class="active-lang">DE ✓</a> |
     <a href="DEINE-EN-SEITE" target="_top">EN</a> |
     <a href="DEINE-NL-SEITE" target="_top">NL</a> |
     <a href="DEINE-FR-SEITE" target="_top">FR</a> |
     <a href="DEINE-ES-SEITE" target="_top">ES</a>
+
   </div>
 </div>
 
